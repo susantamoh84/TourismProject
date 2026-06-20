@@ -28,10 +28,10 @@ Xtest_path = "hf://datasets/cooldude101983/tourism-package-prediction/Xtest.csv"
 ytrain_path = "hf://datasets/cooldude101983/tourism-package-prediction/ytrain.csv"
 ytest_path = "hf://datasets/cooldude101983/tourism-package-prediction/ytest.csv"
 
-Xtrain = pd.read_csv(Xtrain_path)
-Xtest = pd.read_csv(Xtest_path)
-ytrain = pd.read_csv(ytrain_path)
-ytest = pd.read_csv(ytest_path)
+X_train = pd.read_csv(Xtrain_path)
+X_test = pd.read_csv(Xtest_path)
+y_train = pd.read_csv(ytrain_path)
+y_test = pd.read_csv(ytest_path)
 
 
 # List of numerical features in the dataset

@@ -1,4 +1,3 @@
-%%writefile tourism_project/model_building/train.py
 # for data manipulation
 import pandas as pd
 import numpy as np

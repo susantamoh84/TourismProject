@@ -30,8 +30,8 @@ ytest_path = "hf://datasets/cooldude101983/tourism-package-prediction/ytest.csv"
 
 X_train = pd.read_csv(Xtrain_path)
 X_test = pd.read_csv(Xtest_path)
-y_train = pd.read_csv(ytrain_path)
-y_test = pd.read_csv(ytest_path)
+y_train = pd.read_csv(ytrain_path).squeeze()
+y_test = pd.read_csv(ytest_path).squeeze()
 
 
 # List of numerical features in the dataset
@@ -124,6 +124,8 @@ with mlflow.start_run():
 
     # Log best parameters separately in main run
     mlflow.log_params(search.best_params_)
+
+    mlflow.log_param("best_threshold", best_t)
 
     # Store and evaluate the best model
     best_model = search.best_estimator_

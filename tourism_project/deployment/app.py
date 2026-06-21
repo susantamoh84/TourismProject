@@ -15,7 +15,7 @@ model = None  # Don't load at startup
 def get_model():
     global model
     if model is None:
-      model_path = hf_hub_download(repo_id="cooldude101983/tourism-package-prediction", filename="best_tourism_package_model_v1.joblib")
+      model_path = hf_hub_download(repo_id="susantatest123/tourism-package-prediction", filename="best_tourism_package_model_v1.joblib")
       model = joblib.load(model_path)  # Load on first request
     return model
 

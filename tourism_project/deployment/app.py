@@ -5,10 +5,19 @@ from huggingface_hub import hf_hub_download
 import joblib
 
 # Download the model from the Model Hub
-model_path = hf_hub_download(repo_id="susantatest123/tourism-package-prediction", filename="best_tourism_package_model_v1.joblib")
+#model_path = hf_hub_download(repo_id="cooldude101983/tourism-package-prediction", filename="best_tourism_package_model_v1.joblib")
 
 # Load the model
-model = joblib.load(model_path)
+#model = joblib.load(model_path)
+
+model = None  # Don't load at startup
+
+def get_model():
+    global model
+    if model is None:
+      model_path = hf_hub_download(repo_id="cooldude101983/tourism-package-prediction", filename="best_tourism_package_model_v1.joblib")
+      model = joblib.load(model_path)  # Load on first request
+    return model
 
 # ----------------------------------------------------------------------
 # Feature Engineering Logic (Matching train.py)
@@ -85,7 +94,7 @@ if st.button("Predict Purchase"):
     # Apply the same engineering logic
     processed_data = engineer(raw_data)
     
-    prediction_proba = model.predict_proba(processed_data)[0, 1]
+    prediction_proba = get_model().predict_proba(processed_data)[0, 1]
     prediction = (prediction_proba >= classification_threshold).astype(int)
 
     st.subheader(f"Prediction Probability: {prediction_proba:.2%}")
